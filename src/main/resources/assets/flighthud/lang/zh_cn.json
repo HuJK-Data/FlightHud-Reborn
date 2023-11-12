@@ -1,5 +1,4 @@
 {
   "category.flighthud.toggleDisplayMode": "鞘翅飞行抬头显示",
-  "key.flighthud.toggleDisplayMode": "切换显示模式",
-  "msg.flighthud.reload": "Flight HUD配置文件已重载！"
+  "key.flighthud.toggleDisplayMode": "切换显示模式"
 }

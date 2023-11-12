@@ -1,5 +1,4 @@
 {
   "category.flighthud.toggleDisplayMode": "Flight HUD",
-  "key.flighthud.toggleDisplayMode": "Switch Display Mode",
-  "msg.flighthud.reload": "Flight HUD Config reloaded!"
+  "key.flighthud.toggleDisplayMode": "Switch Display Mode"
 }
