@@ -11,6 +11,7 @@ import net.torocraft.flighthud.common.config.SettingsConfig.DisplayMode;
 import java.util.List;
 
 public class HudRenderer extends HudComponent {
+  private int updateTick = 0;
   private final Dimensions dim = new Dimensions();
   private final FlightComputer computer = new FlightComputer();
   private static final String FULL = DisplayMode.FULL.toString();
@@ -55,15 +56,19 @@ public class HudRenderer extends HudComponent {
         m.scale(scale, scale, scale);
       }
 
-      computer.update(client, partial);
-      dim.update(client);
+      if (updateTick == 0) {
+        computer.update(client, partial);
+        dim.update(client);
+      }
+      updateTick++;
+      updateTick %= FlightHud.CONFIG_SETTINGS.hudRefreshInterval;
 
       for (HudComponent component : components) {
         component.render(ctx, partial, client);
       }
       m.popPose();
     } catch (Exception e) {
-      FlightHud.LOGGER.error("Failed to render FlightHud", e);
+      FlightHud.LOGGER.error("Error occurred when rendering FlightHud", e);
     }
   }
 }

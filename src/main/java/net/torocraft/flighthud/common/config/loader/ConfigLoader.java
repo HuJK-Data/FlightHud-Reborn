@@ -2,6 +2,7 @@ package net.torocraft.flighthud.common.config.loader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.torocraft.flighthud.FlightHud;
 import net.torocraft.flighthud.api.IConfig;
 
 import java.io.File;
@@ -12,8 +13,6 @@ import java.util.function.Consumer;
 public class ConfigLoader<T extends IConfig> {
 
   private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
-  //private final Class<T> configClass;
   private final Consumer<T> onLoad;
   private final File file;
   private final T defaultConfig;
@@ -46,7 +45,7 @@ public class ConfigLoader<T extends IConfig> {
     try (FileReader reader = new FileReader(file)) {
       return (T) GSON.fromJson(reader, defaultConfig.getClass());
     } catch (Exception e) {
-      e.printStackTrace();
+      FlightHud.LOGGER.error("Error occurred when reading config", e);
       return defaultConfig;
     }
   }
@@ -55,15 +54,13 @@ public class ConfigLoader<T extends IConfig> {
     try (FileWriter writer = new FileWriter(file)) {
       writer.write(GSON.toJson(config));
     } catch (Exception e) {
-      e.printStackTrace();
+      FlightHud.LOGGER.error("Error occurred when saving config", e);
     }
   }
 
   public void watch(File file) {
-    if (watcher != null) {
-      return;
-    }
-    watcher = FileWatcher.watch(file, () -> load());
+    if (watcher != null) return;
+    watcher = FileWatcher.watch(file, this::load);
   }
 
 }

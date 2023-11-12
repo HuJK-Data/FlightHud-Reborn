@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
-import net.torocraft.flighthud.common.SwitchDisplayModeCommand;
 import net.torocraft.flighthud.common.config.HudConfig;
 import net.torocraft.flighthud.common.config.SettingsConfig;
 import net.torocraft.flighthud.common.config.loader.ConfigLoader;
@@ -24,23 +23,23 @@ public class FlightHud implements ClientModInitializer {
   public static SettingsConfig CONFIG_SETTINGS = new SettingsConfig();
   public static HudConfig CONFIG_MIN = new HudConfig();
   public static HudConfig CONFIG_FULL = new HudConfig();
-  
+
   public static ConfigLoader<SettingsConfig> CONFIG_LOADER_SETTINGS = new ConfigLoader<>(
-    new SettingsConfig(), 
-    FlightHud.MODID + ".settings.json", 
-    config -> FlightHud.CONFIG_SETTINGS = config);
-    
+          new SettingsConfig(),
+          FlightHud.MODID + ".settings.json",
+          config -> FlightHud.CONFIG_SETTINGS = config);
+
 
   public static ConfigLoader<HudConfig> CONFIG_LOADER_FULL = new ConfigLoader<>(
-    new HudConfig(), 
-    FlightHud.MODID + ".full.json", 
-    config -> FlightHud.CONFIG_FULL = config);
-  
+          new HudConfig(),
+          FlightHud.MODID + ".full.json",
+          config -> FlightHud.CONFIG_FULL = config);
+
 
   public static ConfigLoader<HudConfig> CONFIG_LOADER_MIN = new ConfigLoader<>(
-    HudConfig.getDefaultMinSettings(), 
-    FlightHud.MODID + ".min.json", 
-    config -> FlightHud.CONFIG_MIN = config);
+          HudConfig.getDefaultMinSettings(),
+          FlightHud.MODID + ".min.json",
+          config -> FlightHud.CONFIG_MIN = config);
 
   private static KeyMapping keyBinding;
 
@@ -56,7 +55,7 @@ public class FlightHud implements ClientModInitializer {
 
   private static void setupKeyCode() {
     keyBinding = new KeyMapping("key.flighthud.toggleDisplayMode", InputConstants.Type.KEYSYM,
-        GLFW.GLFW_KEY_GRAVE_ACCENT, "category.flighthud.toggleDisplayMode");
+            GLFW.GLFW_KEY_GRAVE_ACCENT, "category.flighthud.toggleDisplayMode");
 
     KeyBindingHelper.registerKeyBinding(keyBinding);
 
@@ -68,9 +67,13 @@ public class FlightHud implements ClientModInitializer {
   }
 
   private static void setupCommand() {
-    ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
-      dispatcher.register(ClientCommandManager.literal("flighthud")
-          .then(ClientCommandManager.literal("toggle").executes(new SwitchDisplayModeCommand())));
-    });
+    ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> dispatcher.register(ClientCommandManager
+            .literal("flighthud")
+            .then(ClientCommandManager.literal("toggle")
+                    .executes(ctx -> {
+                      FlightHud.CONFIG_SETTINGS.toggleDisplayMode();
+                      return 0;
+                    }))
+    ));
   }
 }

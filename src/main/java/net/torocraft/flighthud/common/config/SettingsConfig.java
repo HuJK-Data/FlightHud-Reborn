@@ -16,6 +16,8 @@ public class SettingsConfig implements IConfig {
   public float rollTurningForce = 1.25f;
   public float rollSmoothing = 0.85f;
 
+  public int hudRefreshInterval = 5;
+
   @Override
   public void update() {
   }

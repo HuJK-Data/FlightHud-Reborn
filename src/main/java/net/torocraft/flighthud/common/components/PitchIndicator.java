@@ -109,10 +109,10 @@ public class PitchIndicator extends HudComponent {
     int fontVerticalOffset = degree >= 0 ? 0 : 6;
 
     drawFont(mc, ctx, String.format("%d", i(Math.abs(degree))), pitchData.r2 + 6,
-        (float) y - fontVerticalOffset);
+            (float) y - fontVerticalOffset);
 
     drawFont(mc, ctx, String.format("%d", i(Math.abs(degree))), pitchData.l1 - 17,
-        (float) y - fontVerticalOffset);
+            (float) y - fontVerticalOffset);
   }
 
   private static class PitchIndicatorData {

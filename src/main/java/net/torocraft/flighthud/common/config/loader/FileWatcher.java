@@ -49,11 +49,11 @@ public class FileWatcher implements Runnable {
   protected boolean pollEvents(WatchService watchService) throws InterruptedException {
     WatchKey key = watchService.take();
     for (WatchEvent<?> event : key.pollEvents()) {
-      Path changedFilename = ((Path)event.context()).getFileName();
+      Path changedFilename = ((Path) event.context()).getFileName();
       if (changedFilename.equals(filename)) {
         try {
           listener.onUpdate();
-        }catch(Exception e){
+        } catch (Exception e) {
           new Exception("Error during file watch of " + file.getAbsolutePath(), e).printStackTrace();
         }
       }
