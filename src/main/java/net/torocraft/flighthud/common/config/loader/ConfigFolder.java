@@ -1,7 +1,8 @@
-package net.torocraft.flighthud.config.loader;
+package net.torocraft.flighthud.common.config.loader;
+
+import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.File;
-import net.fabricmc.loader.api.FabricLoader;
 
 public class ConfigFolder {
 

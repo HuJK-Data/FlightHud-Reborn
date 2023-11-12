@@ -3,7 +3,7 @@ package net.torocraft.flighthud.mixin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.torocraft.flighthud.HudRenderer;
+import net.torocraft.flighthud.common.HudRenderer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

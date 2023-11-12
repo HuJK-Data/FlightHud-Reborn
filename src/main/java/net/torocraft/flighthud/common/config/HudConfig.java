@@ -1,7 +1,8 @@
-package net.torocraft.flighthud.config;
+package net.torocraft.flighthud.common.config;
 
-import java.awt.Color;
-import net.torocraft.flighthud.config.loader.IConfig;
+import net.torocraft.flighthud.api.IConfig;
+
+import java.awt.*;
 
 public class HudConfig implements IConfig {
   public transient int color = Color.GREEN.getRGB();

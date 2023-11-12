@@ -1,7 +1,9 @@
-package net.torocraft.flighthud.config.loader;
+package net.torocraft.flighthud.common.config.loader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.torocraft.flighthud.api.IConfig;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;

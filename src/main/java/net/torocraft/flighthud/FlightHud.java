@@ -7,10 +7,13 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
-import net.torocraft.flighthud.config.HudConfig;
-import net.torocraft.flighthud.config.SettingsConfig;
-import net.torocraft.flighthud.config.loader.ConfigLoader;
+import net.torocraft.flighthud.common.SwitchDisplayModeCommand;
+import net.torocraft.flighthud.common.config.HudConfig;
+import net.torocraft.flighthud.common.config.SettingsConfig;
+import net.torocraft.flighthud.common.config.loader.ConfigLoader;
+import net.torocraft.flighthud.compat.ebb.ElytraBombingCompat;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 
@@ -48,6 +51,7 @@ public class FlightHud implements ClientModInitializer {
     CONFIG_LOADER_MIN.load();
     setupKeyCode();
     setupCommand();
+    if (FabricLoader.getInstance().isModLoaded("ebb")) ElytraBombingCompat.init();
   }
 
   private static void setupKeyCode() {

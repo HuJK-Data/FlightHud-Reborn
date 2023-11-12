@@ -1,4 +1,4 @@
-package net.torocraft.flighthud.config.loader;
+package net.torocraft.flighthud.api;
 
 public interface IConfig {
   void update();

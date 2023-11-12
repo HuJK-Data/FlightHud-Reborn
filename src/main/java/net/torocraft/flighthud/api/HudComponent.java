@@ -1,4 +1,4 @@
-package net.torocraft.flighthud;
+package net.torocraft.flighthud.api;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -6,7 +6,9 @@ import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
-import net.torocraft.flighthud.config.HudConfig;
+import net.torocraft.flighthud.common.Dimensions;
+import net.torocraft.flighthud.common.FlightComputer;
+import net.torocraft.flighthud.common.config.HudConfig;
 import org.joml.Matrix4f;
 
 public abstract class HudComponent {
@@ -126,4 +128,8 @@ public abstract class HudComponent {
     BufferUploader.drawWithShader(bufferBuilder.end());
     RenderSystem.disableBlend();
   }
+
+    public interface Provider {
+        HudComponent provide(FlightComputer computer, Dimensions dim);
+    }
 }

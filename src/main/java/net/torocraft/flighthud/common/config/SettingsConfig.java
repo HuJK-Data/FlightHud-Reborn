@@ -1,8 +1,8 @@
-package net.torocraft.flighthud.config;
+package net.torocraft.flighthud.common.config;
 
 import net.minecraft.client.Minecraft;
 import net.torocraft.flighthud.FlightHud;
-import net.torocraft.flighthud.config.loader.IConfig;
+import net.torocraft.flighthud.api.IConfig;
 
 public class SettingsConfig implements IConfig {
   public enum DisplayMode {

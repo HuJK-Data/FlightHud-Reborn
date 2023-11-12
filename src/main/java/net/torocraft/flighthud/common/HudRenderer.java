@@ -1,23 +1,25 @@
-package net.torocraft.flighthud;
+package net.torocraft.flighthud.common;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.torocraft.flighthud.components.*;
-import net.torocraft.flighthud.config.SettingsConfig.DisplayMode;
+import net.torocraft.flighthud.FlightHud;
+import net.torocraft.flighthud.api.HudComponent;
+import net.torocraft.flighthud.api.HudRegistry;
+import net.torocraft.flighthud.common.config.SettingsConfig.DisplayMode;
+
+import java.util.List;
 
 public class HudRenderer extends HudComponent {
-
   private final Dimensions dim = new Dimensions();
   private final FlightComputer computer = new FlightComputer();
   private static final String FULL = DisplayMode.FULL.toString();
   private static final String MIN = DisplayMode.MIN.toString();
 
-  private final HudComponent[] components =
-      new HudComponent[] {new FlightPathIndicator(computer, dim), new LocationIndicator(dim),
-          new HeadingIndicator(computer, dim), new SpeedIndicator(computer, dim),
-          new AltitudeIndicator(computer, dim), new PitchIndicator(computer, dim),
-          new ElytraHealthIndicator(computer, dim)};
+    private final List<HudComponent> components = HudRegistry.getComponents()
+            .stream()
+            .map(p -> p.provide(computer, dim))
+            .toList();
 
   private void setupConfig(Minecraft client) {
     HudComponent.CONFIG = null;
