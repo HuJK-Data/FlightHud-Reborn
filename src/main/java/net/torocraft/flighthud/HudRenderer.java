@@ -1,8 +1,8 @@
 package net.torocraft.flighthud;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.torocraft.flighthud.components.*;
 import net.torocraft.flighthud.config.SettingsConfig.DisplayMode;
 
@@ -19,7 +19,7 @@ public class HudRenderer extends HudComponent {
           new AltitudeIndicator(computer, dim), new PitchIndicator(computer, dim),
           new ElytraHealthIndicator(computer, dim)};
 
-  private void setupConfig(MinecraftClient client) {
+  private void setupConfig(Minecraft client) {
     HudComponent.CONFIG = null;
     if (client.player != null && client.player.isFallFlying()) {
       if (FlightHud.CONFIG_SETTINGS.displayModeWhenFlying.equals(FULL)) {
@@ -37,16 +37,16 @@ public class HudRenderer extends HudComponent {
   }
 
   @Override
-  public void render(DrawContext ctx, float partial, MinecraftClient client) {
+  public void render(GuiGraphics ctx, float partial, Minecraft client) {
     setupConfig(client);
 
     if (HudComponent.CONFIG == null) {
       return;
     }
 
-    final MatrixStack m = ctx.getMatrices();
+    final PoseStack m = ctx.pose();
     try {
-      m.push();
+      m.pushPose();
 
       if (HudComponent.CONFIG.scale != 1d) {
         float scale = 1 / HudComponent.CONFIG.scale;
@@ -59,7 +59,7 @@ public class HudRenderer extends HudComponent {
       for (HudComponent component : components) {
         component.render(ctx, partial, client);
       }
-      m.pop();
+      m.popPose();
     } catch (Exception e) {
       FlightHud.LOGGER.error("Failed to render FlightHud", e);
     }

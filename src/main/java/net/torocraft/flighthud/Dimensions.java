@@ -1,6 +1,6 @@
 package net.torocraft.flighthud;
 
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
 import net.torocraft.flighthud.config.HudConfig;
 
 public class Dimensions {
@@ -17,20 +17,20 @@ public class Dimensions {
   public float tFrame;
   public float bFrame;
 
-  public void update(MinecraftClient client) {
+  public void update(Minecraft client) {
     if (HudComponent.CONFIG == null) {
       return;
     }
     HudConfig c = HudComponent.CONFIG;
-    hScreen = client.getWindow().getScaledHeight();
-    wScreen = client.getWindow().getScaledWidth();
+    hScreen = client.getWindow().getGuiScaledHeight();
+    wScreen = client.getWindow().getGuiScaledWidth();
 
     if (c.scale != 1d && c.scale > 0) {
       hScreen = hScreen * c.scale;
       wScreen = wScreen * c.scale;
     }
 
-    degreesPerPixel = hScreen / client.options.getFov().getValue();
+    degreesPerPixel = hScreen / client.options.fov().get();
     xMid = wScreen / 2;
     yMid = hScreen / 2;
 

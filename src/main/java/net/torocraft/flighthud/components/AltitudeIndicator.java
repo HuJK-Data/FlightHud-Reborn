@@ -1,8 +1,7 @@
 package net.torocraft.flighthud.components;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.torocraft.flighthud.Dimensions;
 import net.torocraft.flighthud.FlightComputer;
 import net.torocraft.flighthud.HudComponent;
@@ -17,7 +16,7 @@ public class AltitudeIndicator extends HudComponent {
   }
 
   @Override
-  public void render(DrawContext ctx, float partial, MinecraftClient mc) {
+  public void render(GuiGraphics ctx, float partial, Minecraft mc) {
     float top = dim.tFrame;
     float bottom = dim.bFrame;
 
@@ -29,8 +28,6 @@ public class AltitudeIndicator extends HudComponent {
     float floorOffset = i(computer.altitude * blocksPerPixel);
     float yFloor = dim.yMid - floorOffset;
     float xAltText = right + 5;
-
-    final MatrixStack m = ctx.getMatrices();
     if (CONFIG.altitude_showGroundInfo) {
       drawHeightIndicator(mc, ctx, left - 1, dim.yMid, bottom - dim.yMid);
     }
@@ -66,10 +63,10 @@ public class AltitudeIndicator extends HudComponent {
     }
   }
 
-  private void drawHeightIndicator(MinecraftClient client, DrawContext ctx, float x, float top, float h) {
-    if (client.world == null) return;
+  private void drawHeightIndicator(Minecraft client, GuiGraphics ctx, float x, float top, float h) {
+    if (client.level == null) return;
     float bottom = top + h;
-    float blocksPerPixel =  h / (client.world.getHeight() + 64f);
+    float blocksPerPixel = h / (client.level.getHeight() + 64f);
     float yAlt = bottom - i((computer.altitude + 64) * blocksPerPixel);
     float yFloor = bottom - i(64 * blocksPerPixel);
 

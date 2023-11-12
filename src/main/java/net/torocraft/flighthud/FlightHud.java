@@ -1,13 +1,13 @@
 package net.torocraft.flighthud;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
+import net.minecraft.client.KeyMapping;
 import net.torocraft.flighthud.config.HudConfig;
 import net.torocraft.flighthud.config.SettingsConfig;
 import net.torocraft.flighthud.config.loader.ConfigLoader;
@@ -39,25 +39,25 @@ public class FlightHud implements ClientModInitializer {
     FlightHud.MODID + ".min.json", 
     config -> FlightHud.CONFIG_MIN = config);
 
-  private static KeyBinding keyBinding;
+  private static KeyMapping keyBinding;
 
   @Override
   public void onInitializeClient() {
     CONFIG_LOADER_SETTINGS.load();
     CONFIG_LOADER_FULL.load();
     CONFIG_LOADER_MIN.load();
-    setupKeycCode();
+    setupKeyCode();
     setupCommand();
   }
 
-  private static void setupKeycCode() {
-    keyBinding = new KeyBinding("key.flighthud.toggleDisplayMode", InputUtil.Type.KEYSYM,
+  private static void setupKeyCode() {
+    keyBinding = new KeyMapping("key.flighthud.toggleDisplayMode", InputConstants.Type.KEYSYM,
         GLFW.GLFW_KEY_GRAVE_ACCENT, "category.flighthud.toggleDisplayMode");
 
     KeyBindingHelper.registerKeyBinding(keyBinding);
 
     ClientTickEvents.END_CLIENT_TICK.register(client -> {
-      while (keyBinding.wasPressed()) {
+      while (keyBinding.consumeClick()) {
         CONFIG_SETTINGS.toggleDisplayMode();
       }
     });
