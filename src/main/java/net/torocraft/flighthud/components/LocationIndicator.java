@@ -1,7 +1,7 @@
 package net.torocraft.flighthud.components;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 import net.torocraft.flighthud.Dimensions;
 import net.torocraft.flighthud.HudComponent;
 
@@ -14,7 +14,8 @@ public class LocationIndicator extends HudComponent {
   }
 
   @Override
-  public void render(MatrixStack m, float partial, MinecraftClient mc) {
+  public void render(DrawContext ctx, float partial, MinecraftClient mc) {
+    if (mc.player == null) return;
     if (!CONFIG.location_showReadout) {
       return;
     }
@@ -25,6 +26,6 @@ public class LocationIndicator extends HudComponent {
     int xLoc = mc.player.getBlockPos().getX();
     int zLoc = mc.player.getBlockPos().getZ();
 
-    drawFont(mc, m, String.format("%d / %d", xLoc, zLoc), x, y);
+    drawFont(mc, ctx, String.format("%d / %d", xLoc, zLoc), x, y);
   }
 }

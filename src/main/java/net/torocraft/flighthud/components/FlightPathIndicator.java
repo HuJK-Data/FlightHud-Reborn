@@ -1,7 +1,7 @@
 package net.torocraft.flighthud.components;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 import net.torocraft.flighthud.Dimensions;
 import net.torocraft.flighthud.FlightComputer;
 import net.torocraft.flighthud.HudComponent;
@@ -16,7 +16,7 @@ public class FlightPathIndicator extends HudComponent {
   }
 
   @Override
-  public void render(MatrixStack m, float partial, MinecraftClient client) {
+  public void render(DrawContext ctx, float partial, MinecraftClient client) {
     if (!CONFIG.flightPath_show) {
       return;
     }
@@ -43,14 +43,14 @@ public class FlightPathIndicator extends HudComponent {
     float t = y - 3 - CONFIG.halfThickness;
     float b = y + 3 - CONFIG.halfThickness;
 
-    drawVerticalLine(m, l, t, b);
-    drawVerticalLine(m, r, t, b);
+    drawVerticalLine(ctx, l, t, b);
+    drawVerticalLine(ctx, r, t, b);
 
-    drawHorizontalLine(m, l, r, t);
-    drawHorizontalLine(m, l, r, b);
+    drawHorizontalLine(ctx, l, r, t);
+    drawHorizontalLine(ctx, l, r, b);
 
-    drawVerticalLine(m, x, t - 5, t);
-    drawHorizontalLine(m, l - 4, l, y - CONFIG.halfThickness);
-    drawHorizontalLine(m, r, r + 4, y - CONFIG.halfThickness);
+    drawVerticalLine(ctx, x, t - 5, t);
+    drawHorizontalLine(ctx, l - 4, l, y - CONFIG.halfThickness);
+    drawHorizontalLine(ctx, r, r + 4, y - CONFIG.halfThickness);
   }
 }

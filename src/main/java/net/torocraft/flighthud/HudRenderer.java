@@ -1,14 +1,9 @@
 package net.torocraft.flighthud;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.math.MatrixStack;
-import net.torocraft.flighthud.components.AltitudeIndicator;
-import net.torocraft.flighthud.components.ElytraHealthIndicator;
-import net.torocraft.flighthud.components.FlightPathIndicator;
-import net.torocraft.flighthud.components.HeadingIndicator;
-import net.torocraft.flighthud.components.LocationIndicator;
-import net.torocraft.flighthud.components.PitchIndicator;
-import net.torocraft.flighthud.components.SpeedIndicator;
+import net.torocraft.flighthud.components.*;
 import net.torocraft.flighthud.config.SettingsConfig.DisplayMode;
 
 public class HudRenderer extends HudComponent {
@@ -26,7 +21,7 @@ public class HudRenderer extends HudComponent {
 
   private void setupConfig(MinecraftClient client) {
     HudComponent.CONFIG = null;
-    if (client.player.isFallFlying()) {
+    if (client.player != null && client.player.isFallFlying()) {
       if (FlightHud.CONFIG_SETTINGS.displayModeWhenFlying.equals(FULL)) {
         HudComponent.CONFIG = FlightHud.CONFIG_FULL;
       } else if (FlightHud.CONFIG_SETTINGS.displayModeWhenFlying.equals(MIN)) {
@@ -42,18 +37,19 @@ public class HudRenderer extends HudComponent {
   }
 
   @Override
-  public void render(MatrixStack m, float partial, MinecraftClient client) {
+  public void render(DrawContext ctx, float partial, MinecraftClient client) {
     setupConfig(client);
 
     if (HudComponent.CONFIG == null) {
       return;
     }
 
+    final MatrixStack m = ctx.getMatrices();
     try {
       m.push();
 
       if (HudComponent.CONFIG.scale != 1d) {
-        float scale = 1 / (float) HudComponent.CONFIG.scale;
+        float scale = 1 / HudComponent.CONFIG.scale;
         m.scale(scale, scale, scale);
       }
 
@@ -61,11 +57,11 @@ public class HudRenderer extends HudComponent {
       dim.update(client);
 
       for (HudComponent component : components) {
-        component.render(m, partial, client);
+        component.render(ctx, partial, client);
       }
       m.pop();
     } catch (Exception e) {
-      e.printStackTrace();
+      FlightHud.LOGGER.error("Failed to render FlightHud", e);
     }
   }
 }

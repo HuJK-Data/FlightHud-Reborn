@@ -4,7 +4,6 @@ import net.minecraft.client.MinecraftClient;
 import net.torocraft.flighthud.config.HudConfig;
 
 public class Dimensions {
-
   public float hScreen;
   public float wScreen;
   public float degreesPerPixel;

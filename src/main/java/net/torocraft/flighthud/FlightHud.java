@@ -1,18 +1,21 @@
 package net.torocraft.flighthud;
 
+import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.torocraft.flighthud.config.HudConfig;
 import net.torocraft.flighthud.config.SettingsConfig;
 import net.torocraft.flighthud.config.loader.ConfigLoader;
 import org.lwjgl.glfw.GLFW;
+import org.slf4j.Logger;
 
 public class FlightHud implements ClientModInitializer {
+  public static final Logger LOGGER = LogUtils.getLogger();
   public static final String MODID = "flighthud";
 
   public static SettingsConfig CONFIG_SETTINGS = new SettingsConfig();
