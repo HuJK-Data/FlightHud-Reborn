@@ -1,0 +1,12 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL = "https://github.com/MikhailTapio/FlightHud/issues"
+[[mods]]
+modId = "${mod_id}"
+logoFile = "assets/flighthud/icon.png"
+version = "${mod_version}"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/flighthud-reborn-forge"
+displayName = "${mod_name}"
+authors = "${mod_authors}"
+description = '''${mod_description}'''
