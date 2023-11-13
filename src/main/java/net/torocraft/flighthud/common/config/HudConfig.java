@@ -6,45 +6,44 @@ import java.awt.*;
 
 public class HudConfig {
     public final ForgeConfigSpec CFG;
-    public final ForgeConfigSpec.DoubleValue width;// = 0.6f;
-    public final ForgeConfigSpec.DoubleValue height;// = 0.6f;
-    public final ForgeConfigSpec.DoubleValue scale;// = 1;
-    public final ForgeConfigSpec.DoubleValue xOffset;// = 0;
-    public final ForgeConfigSpec.DoubleValue yOffset;// = 0;
-    public final ForgeConfigSpec.DoubleValue thickness;// = 1;
+    public final ForgeConfigSpec.DoubleValue width;
+    public final ForgeConfigSpec.DoubleValue height;
+    public final ForgeConfigSpec.DoubleValue scale;
+    public final ForgeConfigSpec.DoubleValue xOffset;
+    public final ForgeConfigSpec.DoubleValue yOffset;
+    public final ForgeConfigSpec.DoubleValue thickness;
 
-    public final ForgeConfigSpec.IntValue color_red;// = 0;
-    public final ForgeConfigSpec.IntValue color_green;// = 255;
-    public final ForgeConfigSpec.IntValue color_blue;// = 0;
+    public final ForgeConfigSpec.IntValue color_red;
+    public final ForgeConfigSpec.IntValue color_green;
+    public final ForgeConfigSpec.IntValue color_blue;
 
-    public final ForgeConfigSpec.BooleanValue elytra_showHealth;// = true;
-    public final ForgeConfigSpec.DoubleValue elytra_x;// = 0.5f;
-    public final ForgeConfigSpec.DoubleValue elytra_y;// = 0.8f;
+    public final ForgeConfigSpec.BooleanValue elytra_showHealth;
+    public final ForgeConfigSpec.DoubleValue elytra_x;
+    public final ForgeConfigSpec.DoubleValue elytra_y;
 
-    public final ForgeConfigSpec.BooleanValue location_showReadout;// = true;
-    public final ForgeConfigSpec.DoubleValue location_x;// = 0.2f;
-    public final ForgeConfigSpec.DoubleValue location_y;// = 0.8f;
+    public final ForgeConfigSpec.BooleanValue location_showReadout;
+    public final ForgeConfigSpec.DoubleValue location_x;
+    public final ForgeConfigSpec.DoubleValue location_y;
+    public final ForgeConfigSpec.BooleanValue flightPath_show;
 
-    public final ForgeConfigSpec.BooleanValue flightPath_show;// = true;
+    public final ForgeConfigSpec.IntValue pitchLadder_degreesPerBar;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_showHorizon;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_showLadder;
+    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumGlideAngle;
+    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumClimbAngle;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_showRoll;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_reverseRoll;
 
-    public final ForgeConfigSpec.IntValue pitchLadder_degreesPerBar;// = 20;
-    public final ForgeConfigSpec.BooleanValue pitchLadder_showHorizon;// = true;
-    public final ForgeConfigSpec.BooleanValue pitchLadder_showLadder;// = true;
-    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumGlideAngle;// = -2;
-    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumClimbAngle;// = 55;
-    public final ForgeConfigSpec.BooleanValue pitchLadder_showRoll;// = true;
-    public final ForgeConfigSpec.BooleanValue pitchLadder_reverseRoll;// = false;
+    public final ForgeConfigSpec.BooleanValue speed_showScale;
+    public final ForgeConfigSpec.BooleanValue speed_showReadout;
 
-    public final ForgeConfigSpec.BooleanValue speed_showScale;// = true;
-    public final ForgeConfigSpec.BooleanValue speed_showReadout;// = true;
+    public final ForgeConfigSpec.BooleanValue altitude_showScale;
+    public final ForgeConfigSpec.BooleanValue altitude_showReadout;
+    public final ForgeConfigSpec.BooleanValue altitude_showHeight;
+    public final ForgeConfigSpec.BooleanValue altitude_showGroundInfo;
 
-    public final ForgeConfigSpec.BooleanValue altitude_showScale;// = true;
-    public final ForgeConfigSpec.BooleanValue altitude_showReadout;// = true;
-    public final ForgeConfigSpec.BooleanValue altitude_showHeight;// = true;
-    public final ForgeConfigSpec.BooleanValue altitude_showGroundInfo;// = true;
-
-    public final ForgeConfigSpec.BooleanValue heading_showScale;// = true;
-    public final ForgeConfigSpec.BooleanValue heading_showReadout;// = true;
+    public final ForgeConfigSpec.BooleanValue heading_showScale;
+    public final ForgeConfigSpec.BooleanValue heading_showReadout;
     public final ForgeConfigSpec.BooleanValue ebb_show_tnt_count;
     public final ForgeConfigSpec.DoubleValue ebb_tnt_x;
     public final ForgeConfigSpec.DoubleValue ebb_tnt_y;
