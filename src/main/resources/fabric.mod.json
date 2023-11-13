@@ -27,6 +27,7 @@
   "depends": {
     "fabricloader": "*",
     "fabric": "*",
-    "minecraft": "*"
+    "minecraft": "*",
+    "forgeconfigapiport": "*"
   }
 }
