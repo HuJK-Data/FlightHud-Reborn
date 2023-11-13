@@ -1,56 +1,52 @@
 package net.torocraft.flighthud.common.config;
 
 import net.minecraft.client.Minecraft;
-import net.torocraft.flighthud.FlightHud;
-import net.torocraft.flighthud.api.IConfig;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.ForgeConfigSpec;
 
-public class SettingsConfig implements IConfig {
-  public enum DisplayMode {
-    NONE, MIN, FULL
-  }
+public class SettingsConfig {
+    public static final ForgeConfigSpec CFG;
+    public static final ForgeConfigSpec.ConfigValue<DisplayMode> displayModeWhenNotFlying;
+    public static final ForgeConfigSpec.ConfigValue<DisplayMode> displayModeWhenFlying;
+    public static final ForgeConfigSpec.BooleanValue calculateRoll;
+    public static final ForgeConfigSpec.DoubleValue rollTurningForce;
+    public static final ForgeConfigSpec.DoubleValue rollSmoothing;
+    public static final ForgeConfigSpec.IntValue hudRefreshInterval;
 
-  public boolean watchForConfigChanges = true;
-  public String displayModeWhenFlying = DisplayMode.FULL.toString();
-  public String displayModeWhenNotFlying = DisplayMode.NONE.toString();
-  public boolean calculateRoll = true;
-  public float rollTurningForce = 1.25f;
-  public float rollSmoothing = 0.85f;
-
-  public int hudRefreshInterval = 5;
-
-  @Override
-  public void update() {
-  }
-
-  @Override
-  public boolean shouldWatch() {
-    return watchForConfigChanges;
-  }
-
-  private static String toggle(String curr) {
-    DisplayMode m = parseDisplayMode(curr);
-    int i = (m.ordinal() + 1) % DisplayMode.values().length;
-    return DisplayMode.values()[i].toString();
-  }
-
-  public void toggleDisplayMode() {
-    Minecraft client = Minecraft.getInstance();
-    if (client.player == null) return;
-    if (client.player.isFallFlying()) {
-      displayModeWhenFlying = toggle(displayModeWhenFlying);
-    } else {
-      displayModeWhenNotFlying = toggle(displayModeWhenNotFlying);
+    static {
+        final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        builder.push("HUDSettings");
+        displayModeWhenNotFlying = builder.defineEnum("displayModeWhenNotFlying", DisplayMode.NONE);
+        displayModeWhenFlying = builder.defineEnum("displayModeWhenFlying", DisplayMode.FULL);
+        calculateRoll = builder.define("calculateRoll", true);
+        rollTurningForce = builder.defineInRange("rollTurningForce", 1.25, 0.0, Double.MAX_VALUE);
+        rollSmoothing = builder.defineInRange("rollSmoothing", 0.85, 0.0, Double.MAX_VALUE);
+        hudRefreshInterval = builder.defineInRange("hudRefreshInterval", 5, 1, 40);
+        builder.pop();
+        CFG = builder.build();
     }
 
-    FlightHud.CONFIG_LOADER_SETTINGS.save(this);
-  }
+    public enum DisplayMode {
+        NONE, MIN, FULL;
 
-  public static DisplayMode parseDisplayMode(String s) {
-    try {
-      return DisplayMode.valueOf(s);
-    } catch (Exception e) {
-      return DisplayMode.NONE;
+        public static DisplayMode cycle(DisplayMode o) {
+            return switch (o) {
+                case NONE -> MIN;
+                case MIN -> FULL;
+                default -> NONE;
+            };
+        }
     }
-  }
 
+    public static void toggle(boolean flying) {
+        if (flying) displayModeWhenFlying.set(DisplayMode.cycle(displayModeWhenFlying.get()));
+        else displayModeWhenNotFlying.set(DisplayMode.cycle(displayModeWhenNotFlying.get()));
+        CFG.save();
+    }
+
+    public static void toggle() {
+        final Player player = Minecraft.getInstance().player;
+        if (player == null) return;
+        toggle(player.isFallFlying());
+    }
 }

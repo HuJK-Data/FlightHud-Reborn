@@ -1,96 +1,146 @@
 package net.torocraft.flighthud.common.config;
 
-import net.torocraft.flighthud.api.IConfig;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.awt.*;
 
-public class HudConfig implements IConfig {
-  public transient int color = Color.GREEN.getRGB();
-  public transient float halfThickness = 0.5f;
+public class HudConfig {
+    public final ForgeConfigSpec CFG;
+    public final ForgeConfigSpec.DoubleValue width;// = 0.6f;
+    public final ForgeConfigSpec.DoubleValue height;// = 0.6f;
+    public final ForgeConfigSpec.DoubleValue scale;// = 1;
+    public final ForgeConfigSpec.DoubleValue xOffset;// = 0;
+    public final ForgeConfigSpec.DoubleValue yOffset;// = 0;
+    public final ForgeConfigSpec.DoubleValue thickness;// = 1;
 
-  public boolean watchForConfigChanges = true;
+    public final ForgeConfigSpec.IntValue color_red;// = 0;
+    public final ForgeConfigSpec.IntValue color_green;// = 255;
+    public final ForgeConfigSpec.IntValue color_blue;// = 0;
 
-  public float width = 0.6f;
-  public float height = 0.6f;
-  public float scale = 1;
-  public float xOffset = 0;
-  public float yOffset = 0;
-  public float thickness = 1;
+    public final ForgeConfigSpec.BooleanValue elytra_showHealth;// = true;
+    public final ForgeConfigSpec.DoubleValue elytra_x;// = 0.5f;
+    public final ForgeConfigSpec.DoubleValue elytra_y;// = 0.8f;
 
-  public int color_red = 0;
-  public int color_green = 255;
-  public int color_blue = 0;
+    public final ForgeConfigSpec.BooleanValue location_showReadout;// = true;
+    public final ForgeConfigSpec.DoubleValue location_x;// = 0.2f;
+    public final ForgeConfigSpec.DoubleValue location_y;// = 0.8f;
 
-  public boolean elytra_showHealth = true;
-  public float elytra_x = 0.5f;
-  public float elytra_y = 0.8f;
+    public final ForgeConfigSpec.BooleanValue flightPath_show;// = true;
 
-  public boolean location_showReadout = true;
-  public float location_x = 0.2f;
-  public float location_y = 0.8f;
+    public final ForgeConfigSpec.IntValue pitchLadder_degreesPerBar;// = 20;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_showHorizon;// = true;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_showLadder;// = true;
+    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumGlideAngle;// = -2;
+    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumClimbAngle;// = 55;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_showRoll;// = true;
+    public final ForgeConfigSpec.BooleanValue pitchLadder_reverseRoll;// = false;
 
-  public boolean flightPath_show = true;
+    public final ForgeConfigSpec.BooleanValue speed_showScale;// = true;
+    public final ForgeConfigSpec.BooleanValue speed_showReadout;// = true;
 
-  public int pitchLadder_degreesPerBar = 20;
-  public boolean pitchLadder_showHorizon = true;
-  public boolean pitchLadder_showLadder = true;
-  public float pitchLadder_optimumGlideAngle = -2;
-  public float pitchLadder_optimumClimbAngle = 55;
-  public boolean pitchLadder_showRoll = true;
-  public boolean pitchLadder_reverseRoll = false;
+    public final ForgeConfigSpec.BooleanValue altitude_showScale;// = true;
+    public final ForgeConfigSpec.BooleanValue altitude_showReadout;// = true;
+    public final ForgeConfigSpec.BooleanValue altitude_showHeight;// = true;
+    public final ForgeConfigSpec.BooleanValue altitude_showGroundInfo;// = true;
 
-  public boolean speed_showScale = true;
-  public boolean speed_showReadout = true;
+    public final ForgeConfigSpec.BooleanValue heading_showScale;// = true;
+    public final ForgeConfigSpec.BooleanValue heading_showReadout;// = true;
+    public final ForgeConfigSpec.BooleanValue ebb_show_tnt_count;
+    public final ForgeConfigSpec.DoubleValue ebb_tnt_x;
+    public final ForgeConfigSpec.DoubleValue ebb_tnt_y;
 
-  public boolean altitude_showScale = true;
-  public boolean altitude_showReadout = true;
-  public boolean altitude_showHeight = true;
-  public boolean altitude_showGroundInfo = true;
-
-  public boolean heading_showScale = true;
-  public boolean heading_showReadout = true;
-  public boolean heading_showOrdinals = true;
-
-  @Override
-  public void update() {
-    updateThickness();
-    updateColor();
-  }
-
-  private void updateThickness() {
-    try {
-      halfThickness = thickness / 2;
-    } catch (Exception e) {
-      halfThickness = 0.5f;
+    private HudConfig(boolean isFull) {
+        final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        builder.push(String.format("HudDisplay-%s", isFull ? "FULL" : "MIN"));
+        builder.push("General");
+        width = builder.defineInRange("width", 0.6, 0.1, 10.0);
+        height = builder.defineInRange("height", 0.6, 0.1, 10.0);
+        scale = builder.defineInRange("scale", 1.0, 0.1, 10.0);
+        xOffset = builder.defineInRange("xOffset", 0.0f, -10.0, 10.0);
+        yOffset = builder.defineInRange("yOffset", 0.0f, -10.0, 10.0);
+        thickness = builder.defineInRange("thickness", 1.0, 0.1, 3.0);
+        color_red = builder.defineInRange("color_red", 0, 0, 255);
+        color_green = builder.defineInRange("color_green", 255, 0, 255);
+        color_blue = builder.defineInRange("color_blue", 0, 0, 255);
+        builder.pop();
+        builder.push("ElytraHealth");
+        elytra_showHealth = builder.define("elytra_showHealth", isFull);
+        elytra_x = builder.defineInRange("elytra_x", 0.5, 0.0, 1.0);
+        elytra_y = builder.defineInRange("elytra_y", 0.8, 0.0, 1.0);
+        builder.pop();
+        builder.push("Location");
+        location_showReadout = builder.define("location_showReadout", true);
+        location_x = builder.defineInRange("location_x", 0.2, 0.0, 1.0);
+        location_y = builder.defineInRange("location_y", 0.8, 0.0, 1.0);
+        builder.pop();
+        builder.push("FlightPath");
+        flightPath_show = builder.define("flightPath_show", isFull);
+        builder.pop();
+        builder.push("PitchLadder");
+        pitchLadder_degreesPerBar = builder.defineInRange("pitchLadder_degreesPerBar", 20, 1, 20);
+        pitchLadder_showHorizon = builder.define("pitchLadder_showHorizon", isFull);
+        pitchLadder_showLadder = builder.define("pitchLadder_showLadder", isFull);
+        pitchLadder_optimumGlideAngle = builder.defineInRange("pitchLadder_optimumGlideAngle", isFull ? -2.0f : 0.0f,
+                -360.0f, 360.0f);
+        pitchLadder_optimumClimbAngle = builder.defineInRange("pitchLadder_optimumClimbAngle", isFull ? 55.0f : 0.0f,
+                -360.0f, 360.0f);
+        pitchLadder_showRoll = builder.define("pitchLadder_showRoll", true);
+        pitchLadder_reverseRoll = builder.define("pitchLadder_reverseRoll", false);
+        builder.pop();
+        builder.push("Speed");
+        speed_showScale = builder.define("speed_showScale", isFull);
+        speed_showReadout = builder.define("speed_showReadout", true);
+        builder.pop();
+        builder.push("Altitude");
+        altitude_showScale = builder.define("altitude_showScale", isFull);
+        altitude_showReadout = builder.define("altitude_showReadout", true);
+        altitude_showHeight = builder.define("altitude_showHeight", isFull);
+        altitude_showGroundInfo = builder.define("altitude_showGroundInfo", isFull);
+        builder.pop();
+        builder.push("Heading");
+        heading_showScale = builder.define("heading_showScale", isFull);
+        heading_showReadout = builder.define("heading_showReadout", true);
+        builder.pop();
+        builder.push("ElytraBombing");
+        ebb_show_tnt_count = builder.define("ebb_show_tnt_count", true);
+        ebb_tnt_x = builder.defineInRange("ebb_tnt_x", 0.6f, 0.0f, 1.0f);
+        ebb_tnt_y = builder.defineInRange("ebb_tnt_y", 0.8f, 0.0f, 1.0f);
+        builder.pop();
+        builder.pop();
+        CFG = builder.build();
     }
-  }
 
-  private void updateColor() {
-    try {
-      color = new Color(color_red, color_green, color_blue).getRGB();
-    } catch (Exception e) {
-      color = Color.GREEN.getRGB();
+    public float getHalfThickness() {
+        return thickness.get().floatValue() / 2;
     }
-  }
 
-  public static HudConfig getDefaultMinSettings() {
-    HudConfig config = new HudConfig();
-    config.altitude_showScale = false;
-    config.speed_showScale = false;
-    config.heading_showScale = false;
-    config.altitude_showGroundInfo = false;
-    config.pitchLadder_showLadder = false;
-    config.pitchLadder_optimumClimbAngle = 0;
-    config.pitchLadder_optimumGlideAngle = 0;
-    config.elytra_showHealth = false;
-    config.flightPath_show = false;
-    config.altitude_showHeight = false;
-    config.pitchLadder_showHorizon = false;
-    return config;
-  }
+    public int getColorRGB() {
+        return new Color(color_red.get(), color_green.get(), color_blue.get()).getRGB();
+    }
 
-  @Override
-  public boolean shouldWatch() {
-    return watchForConfigChanges;
-  }
+    public static class Min extends HudConfig {
+        private static Min instance;
+
+        private Min() {
+            super(false);
+        }
+
+        public static Min getInstance() {
+            if (instance == null) instance = new Min();
+            return instance;
+        }
+    }
+
+    public static class Full extends HudConfig {
+        private static Full instance;
+
+        private Full() {
+            super(true);
+        }
+
+        public static Full getInstance() {
+            if (instance == null) instance = new Full();
+            return instance;
+        }
+    }
 }

@@ -8,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.torocraft.flighthud.api.HudComponent;
 import net.torocraft.flighthud.common.Dimensions;
-import net.torocraft.flighthud.compat.ebb.ElytraBombingCompat;
 
 import java.util.List;
 
@@ -27,8 +26,8 @@ public class AmmunitionIndicator extends HudComponent {
         if (!igniters.contains(player.getItemInHand(InteractionHand.MAIN_HAND).getItem())) return;
         final int tntCount = player.getInventory().countItem(Items.TNT);
         final float cd = player.getCooldowns().getCooldownPercent(Items.TNT, partial);
-        final float x = dim.wScreen * ElytraBombingCompat.BOMBING.ammunitionDisplayX;
-        final float y = dim.hScreen * ElytraBombingCompat.BOMBING.ammunitionDisplayY;
+        final float x = dim.wScreen * CONFIG.ebb_tnt_x.get().floatValue();
+        final float y = dim.hScreen * CONFIG.ebb_tnt_y.get().floatValue();
         drawBox(ctx, x - 3.5f, y - 1.5f, 30, 10);
         drawFont(mc, ctx, "T", x - 10, y);
         drawFont(mc, ctx, String.valueOf(tntCount), x, y);

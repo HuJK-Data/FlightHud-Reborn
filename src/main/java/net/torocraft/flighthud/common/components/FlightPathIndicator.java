@@ -17,7 +17,7 @@ public class FlightPathIndicator extends HudComponent {
 
     @Override
     public void render(GuiGraphics ctx, float partial, Minecraft client) {
-        if (!CONFIG.flightPath_show) {
+        if (!CONFIG.flightPath_show.get()) {
             return;
         }
 
@@ -40,8 +40,8 @@ public class FlightPathIndicator extends HudComponent {
 
         float l = x - 3;
         float r = x + 3;
-        float t = y - 3 - CONFIG.halfThickness;
-        float b = y + 3 - CONFIG.halfThickness;
+        float t = y - 3 - CONFIG.getHalfThickness();
+        float b = y + 3 - CONFIG.getHalfThickness();
 
         drawVerticalLine(ctx, l, t, b);
         drawVerticalLine(ctx, r, t, b);
@@ -50,7 +50,7 @@ public class FlightPathIndicator extends HudComponent {
         drawHorizontalLine(ctx, l, r, b);
 
         drawVerticalLine(ctx, x, t - 5, t);
-        drawHorizontalLine(ctx, l - 4, l, y - CONFIG.halfThickness);
-        drawHorizontalLine(ctx, r, r + 4, y - CONFIG.halfThickness);
+        drawHorizontalLine(ctx, l - 4, l, y - CONFIG.getHalfThickness());
+        drawHorizontalLine(ctx, r, r + 4, y - CONFIG.getHalfThickness());
     }
 }

@@ -40,7 +40,7 @@ public abstract class HudComponent {
     }
 
     protected void drawFont(Minecraft mc, GuiGraphics ctx, String s, float x, float y) {
-        ctx.drawString(mc.font, s, (int) x, (int) y, CONFIG.color, false);
+        ctx.drawString(mc.font, s, (int) x, (int) y, CONFIG.getColorRGB(), false);
     }
 
     protected void drawRightAlignedFont(Minecraft mc, GuiGraphics ctx, String s, float x, float y) {
@@ -81,8 +81,8 @@ public abstract class HudComponent {
             x1 = x2;
             x2 = i;
         }
-        fill(ctx, x1 - CONFIG.halfThickness, y - CONFIG.halfThickness, x2 + CONFIG.halfThickness,
-                y + CONFIG.halfThickness);
+        final float half = CONFIG.getHalfThickness();
+        fill(ctx, x1 - half, y - half, x2 + half, y + half);
     }
 
     protected void drawVerticalLine(GuiGraphics ctx, float x, float y1, float y2) {
@@ -91,9 +91,8 @@ public abstract class HudComponent {
             y1 = y2;
             y2 = i;
         }
-
-        fill(ctx, x - CONFIG.halfThickness, y1 + CONFIG.halfThickness, x + CONFIG.halfThickness,
-                y2 - CONFIG.halfThickness);
+        final float half = CONFIG.getHalfThickness();
+        fill(ctx, x - half, y1 + half, x + half, y2 - half);
     }
 
     public static void fill(GuiGraphics ctx, float x1, float y1, float x2, float y2) {
@@ -110,7 +109,7 @@ public abstract class HudComponent {
             y1 = y2;
             y2 = j;
         }
-        int color = CONFIG.color;
+        int color = CONFIG.getColorRGB();
         float alpha = (float) (color >> 24 & 255) / 255.0F;
         float r = (float) (color >> 16 & 255) / 255.0F;
         float g = (float) (color >> 8 & 255) / 255.0F;

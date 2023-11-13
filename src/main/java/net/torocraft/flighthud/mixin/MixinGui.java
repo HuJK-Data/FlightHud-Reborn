@@ -15,14 +15,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Gui.class)
 public class MixinGui {
 
-  @Shadow
-  @Final
-  private Minecraft minecraft;
-  @Unique
-  private final HudRenderer hud = new HudRenderer();
+    @Shadow
+    @Final
+    private Minecraft minecraft;
+    @Unique
+    private final HudRenderer hud = new HudRenderer();
 
-  @Inject(method = "render", at = @At("RETURN"))
-  private void render(GuiGraphics context, float tickDelta, CallbackInfo ci) {
-    hud.render(context, tickDelta, minecraft);
-  }
+    @Inject(method = "render", at = @At("RETURN"))
+    private void render(GuiGraphics context, float tickDelta, CallbackInfo ci) {
+        hud.render(context, tickDelta, minecraft);
+    }
 }

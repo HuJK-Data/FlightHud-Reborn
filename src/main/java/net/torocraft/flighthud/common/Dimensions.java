@@ -5,44 +5,45 @@ import net.torocraft.flighthud.api.HudComponent;
 import net.torocraft.flighthud.common.config.HudConfig;
 
 public class Dimensions {
-  public float hScreen;
-  public float wScreen;
-  public float degreesPerPixel;
-  public float xMid;
-  public float yMid;
+    public float hScreen;
+    public float wScreen;
+    public float degreesPerPixel;
+    public float xMid;
+    public float yMid;
 
-  public float wFrame;
-  public float hFrame;
-  public float lFrame;
-  public float rFrame;
-  public float tFrame;
-  public float bFrame;
+    public float wFrame;
+    public float hFrame;
+    public float lFrame;
+    public float rFrame;
+    public float tFrame;
+    public float bFrame;
 
-  public void update(Minecraft client) {
-    if (HudComponent.CONFIG == null) {
-      return;
+    public void update(Minecraft client) {
+        if (HudComponent.CONFIG == null) {
+            return;
+        }
+        HudConfig c = HudComponent.CONFIG;
+        hScreen = client.getWindow().getGuiScaledHeight();
+        wScreen = client.getWindow().getGuiScaledWidth();
+
+        final float scale = c.scale.get().floatValue();
+        if (scale != 1.0f && scale > 0) {
+            hScreen = hScreen * scale;
+            wScreen = wScreen * scale;
+        }
+
+        degreesPerPixel = hScreen / client.options.fov().get();
+        xMid = wScreen / 2;
+        yMid = hScreen / 2;
+
+        wFrame = wScreen * c.width.get().floatValue();
+        hFrame = hScreen * c.height.get().floatValue();
+
+        lFrame = ((wScreen - wFrame) / 2) + c.xOffset.get().floatValue();
+        rFrame = lFrame + wFrame;
+
+        tFrame = ((hScreen - hFrame) / 2) + c.yOffset.get().floatValue();
+        bFrame = tFrame + hFrame;
     }
-    HudConfig c = HudComponent.CONFIG;
-    hScreen = client.getWindow().getGuiScaledHeight();
-    wScreen = client.getWindow().getGuiScaledWidth();
-
-    if (c.scale != 1d && c.scale > 0) {
-      hScreen = hScreen * c.scale;
-      wScreen = wScreen * c.scale;
-    }
-
-    degreesPerPixel = hScreen / client.options.fov().get();
-    xMid = wScreen / 2;
-    yMid = hScreen / 2;
-
-    wFrame = wScreen * c.width;
-    hFrame = hScreen * c.height;
-
-    lFrame = ((wScreen - wFrame) / 2) + c.xOffset;
-    rFrame = lFrame + wFrame;
-
-    tFrame = ((hScreen - hFrame) / 2) + c.yOffset;
-    bFrame = tFrame + hFrame;
-  }
 
 }

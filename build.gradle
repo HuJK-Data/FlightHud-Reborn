@@ -7,6 +7,15 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+repositories {
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
 dependencies {
     //to change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -15,6 +24,9 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "curse.maven:forge-config-api-port-fabric-547434:${project.fcapi_file_id}"
+    compileOnly('com.electronwill.night-config:core:3.6.5')
+    compileOnly('com.electronwill.night-config:toml:3.6.5')
 }
 
 processResources {

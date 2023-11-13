@@ -6,69 +6,62 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.torocraft.flighthud.FlightHud;
 import net.torocraft.flighthud.api.HudComponent;
 import net.torocraft.flighthud.api.HudRegistry;
-import net.torocraft.flighthud.common.config.SettingsConfig.DisplayMode;
+import net.torocraft.flighthud.common.config.HudConfig;
+import net.torocraft.flighthud.common.config.SettingsConfig;
 
 import java.util.List;
 
 public class HudRenderer extends HudComponent {
-  private int updateTick = 0;
-  private final Dimensions dim = new Dimensions();
-  private final FlightComputer computer = new FlightComputer();
-  private static final String FULL = DisplayMode.FULL.toString();
-  private static final String MIN = DisplayMode.MIN.toString();
+    private int updateTick = 0;
+    private final Dimensions dim = new Dimensions();
+    private final FlightComputer computer = new FlightComputer();
 
     private final List<HudComponent> components = HudRegistry.getComponents()
             .stream()
             .map(p -> p.provide(computer, dim))
             .toList();
 
-  private void setupConfig(Minecraft client) {
-    HudComponent.CONFIG = null;
-    if (client.player != null && client.player.isFallFlying()) {
-      if (FlightHud.CONFIG_SETTINGS.displayModeWhenFlying.equals(FULL)) {
-        HudComponent.CONFIG = FlightHud.CONFIG_FULL;
-      } else if (FlightHud.CONFIG_SETTINGS.displayModeWhenFlying.equals(MIN)) {
-        HudComponent.CONFIG = FlightHud.CONFIG_MIN;
-      }
-    } else {
-      if (FlightHud.CONFIG_SETTINGS.displayModeWhenNotFlying.equals(FULL)) {
-        HudComponent.CONFIG = FlightHud.CONFIG_FULL;
-      } else if (FlightHud.CONFIG_SETTINGS.displayModeWhenNotFlying.equals(MIN)) {
-        HudComponent.CONFIG = FlightHud.CONFIG_MIN;
-      }
-    }
-  }
-
-  @Override
-  public void render(GuiGraphics ctx, float partial, Minecraft client) {
-    setupConfig(client);
-
-    if (HudComponent.CONFIG == null) {
-      return;
+    private void setupConfig(Minecraft client) {
+        if (client.player == null) return;
+        HudComponent.CONFIG = switch (client.player.isFallFlying() ?
+                SettingsConfig.displayModeWhenFlying.get() :
+                SettingsConfig.displayModeWhenNotFlying.get()) {
+            case NONE -> null;
+            case MIN -> HudConfig.Min.getInstance();
+            case FULL -> HudConfig.Full.getInstance();
+        };
     }
 
-    final PoseStack m = ctx.pose();
-    try {
-      m.pushPose();
+    @Override
+    public void render(GuiGraphics ctx, float partial, Minecraft client) {
+        setupConfig(client);
 
-      if (HudComponent.CONFIG.scale != 1d) {
-        float scale = 1 / HudComponent.CONFIG.scale;
-        m.scale(scale, scale, scale);
-      }
+        if (HudComponent.CONFIG == null) {
+            return;
+        }
 
-      if (updateTick == 0) {
-        computer.update(client, partial);
-        dim.update(client);
-      }
-      updateTick++;
-      updateTick %= FlightHud.CONFIG_SETTINGS.hudRefreshInterval;
+        final PoseStack m = ctx.pose();
+        try {
+            m.pushPose();
+            final float scale0 = HudComponent.CONFIG.scale.get().floatValue();
+            if (scale0 != 1.0f) {
+                float scale = 1 / scale0;
+                m.scale(scale, scale, scale);
+            }
 
-      for (HudComponent component : components) {
-        component.render(ctx, partial, client);
-      }
-      m.popPose();
-    } catch (Exception e) {
-      FlightHud.LOGGER.error("Error occurred when rendering FlightHud", e);
+            if (updateTick == 0) {
+                computer.update(client, partial);
+                dim.update(client);
+            }
+            updateTick++;
+            updateTick %= SettingsConfig.hudRefreshInterval.get();
+
+            for (HudComponent component : components) {
+                component.render(ctx, partial, client);
+            }
+            m.popPose();
+        } catch (Exception e) {
+            FlightHud.LOGGER.error("Error occurred when rendering FlightHud", e);
+        }
     }
-  }
 }

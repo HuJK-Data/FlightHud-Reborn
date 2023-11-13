@@ -18,12 +18,12 @@ public class ElytraHealthIndicator extends HudComponent {
 
     @Override
     public void render(GuiGraphics ctx, float partial, Minecraft mc) {
-        if (!CONFIG.elytra_showHealth || computer.elytraHealth == null) {
+        if (!CONFIG.elytra_showHealth.get() || computer.elytraHealth == null) {
             return;
         }
 
-        float x = dim.wScreen * CONFIG.elytra_x;
-        float y = dim.hScreen * CONFIG.elytra_y;
+        float x = dim.wScreen * CONFIG.elytra_x.get().floatValue();
+        float y = dim.hScreen * CONFIG.elytra_y.get().floatValue();
 
         drawBox(ctx, x - 3.5f, y - 1.5f, 30, 10);
         drawFont(mc, ctx, "E", x - 10, y);

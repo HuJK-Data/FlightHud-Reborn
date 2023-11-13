@@ -16,12 +16,12 @@ public class LocationIndicator extends HudComponent {
     @Override
     public void render(GuiGraphics ctx, float partial, Minecraft mc) {
         if (mc.player == null) return;
-        if (!CONFIG.location_showReadout) {
+        if (!CONFIG.location_showReadout.get()) {
             return;
         }
 
-        float x = dim.wScreen * CONFIG.location_x;
-        float y = dim.hScreen * CONFIG.location_y;
+        float x = dim.wScreen * CONFIG.location_x.get().floatValue();
+        float y = dim.hScreen * CONFIG.location_y.get().floatValue();
 
         int xLoc = mc.player.blockPosition().getX();
         int zLoc = mc.player.blockPosition().getZ();

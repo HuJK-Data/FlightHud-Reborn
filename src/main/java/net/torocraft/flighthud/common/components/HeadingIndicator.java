@@ -26,12 +26,12 @@ public class HeadingIndicator extends HudComponent {
         float northOffset = computer.heading * dim.degreesPerPixel;
         float xNorth = dim.xMid - northOffset;
 
-        if (CONFIG.heading_showReadout) {
+        if (CONFIG.heading_showReadout.get()) {
             drawFont(mc, ctx, String.format("%03d", i(wrapHeading(computer.heading))), dim.xMid - 8, yText);
             drawBox(ctx, dim.xMid - 15, yText - 1.5f, 30, 10);
         }
 
-        if (CONFIG.heading_showScale) {
+        if (CONFIG.heading_showScale.get()) {
             drawPointer(ctx, dim.xMid, top + 10, 0);
             for (int i = -540; i < 540; i = i + 5) {
                 float x = (i * dim.degreesPerPixel) + xNorth;
@@ -46,7 +46,7 @@ public class HeadingIndicator extends HudComponent {
                         drawVerticalLine(ctx, x, top + 3, top + 10);
                     }
 
-                    if (!CONFIG.heading_showReadout || x <= dim.xMid - 26 || x >= dim.xMid + 26) {
+                    if (!CONFIG.heading_showReadout.get() || x <= dim.xMid - 26 || x >= dim.xMid + 26) {
                         drawFont(mc, ctx, String.format("%03d", i(wrapHeading(i))), x - 8, yText);
                     }
                 } else {
