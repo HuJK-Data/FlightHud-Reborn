@@ -1,9 +1,9 @@
-package net.torocraft.flighthud.mixin;
+package com.plr.flighthud.mixin;
 
+import com.plr.flighthud.common.HudRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.torocraft.flighthud.common.HudRenderer;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,10 +19,16 @@ public class MixinGui {
     @Final
     private Minecraft minecraft;
     @Unique
-    private final HudRenderer hud = new HudRenderer();
+    private HudRenderer hud;
 
     @Inject(method = "render", at = @At("RETURN"))
     private void render(GuiGraphics context, float tickDelta, CallbackInfo ci) {
-        hud.render(context, tickDelta, minecraft);
+        getHud().render(context, tickDelta, minecraft);
+    }
+
+    @Unique
+    private HudRenderer getHud() {
+        if (hud == null) hud = new HudRenderer();
+        return hud;
     }
 }

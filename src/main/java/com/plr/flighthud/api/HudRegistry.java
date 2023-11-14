@@ -1,7 +1,7 @@
-package net.torocraft.flighthud.api;
+package com.plr.flighthud.api;
 
 import com.google.common.collect.Lists;
-import net.torocraft.flighthud.common.components.*;
+import com.plr.flighthud.common.components.*;
 
 import java.util.List;
 

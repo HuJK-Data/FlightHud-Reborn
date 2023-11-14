@@ -1,13 +1,13 @@
-package net.torocraft.flighthud.common;
+package com.plr.flighthud.common;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.plr.flighthud.FlightHud;
+import com.plr.flighthud.api.HudComponent;
+import com.plr.flighthud.api.HudRegistry;
+import com.plr.flighthud.common.config.HudConfig;
+import com.plr.flighthud.common.config.SettingsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.torocraft.flighthud.FlightHud;
-import net.torocraft.flighthud.api.HudComponent;
-import net.torocraft.flighthud.api.HudRegistry;
-import net.torocraft.flighthud.common.config.HudConfig;
-import net.torocraft.flighthud.common.config.SettingsConfig;
 
 import java.util.List;
 

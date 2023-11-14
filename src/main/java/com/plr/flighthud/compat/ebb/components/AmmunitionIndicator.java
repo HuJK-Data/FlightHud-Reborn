@@ -1,13 +1,13 @@
-package net.torocraft.flighthud.compat.ebb.components;
+package com.plr.flighthud.compat.ebb.components;
 
 import com.google.common.collect.ImmutableList;
+import com.plr.flighthud.api.HudComponent;
+import com.plr.flighthud.common.Dimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.torocraft.flighthud.api.HudComponent;
-import net.torocraft.flighthud.common.Dimensions;
 
 import java.util.List;
 

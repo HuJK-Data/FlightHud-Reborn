@@ -1,8 +1,8 @@
-package net.torocraft.flighthud.compat.ebb;
+package com.plr.flighthud.compat.ebb;
 
-import net.torocraft.flighthud.FlightHud;
-import net.torocraft.flighthud.api.HudRegistry;
-import net.torocraft.flighthud.compat.ebb.components.AmmunitionIndicator;
+import com.plr.flighthud.FlightHud;
+import com.plr.flighthud.api.HudRegistry;
+import com.plr.flighthud.compat.ebb.components.AmmunitionIndicator;
 
 public class ElytraBombingCompat {
     public static void init() {

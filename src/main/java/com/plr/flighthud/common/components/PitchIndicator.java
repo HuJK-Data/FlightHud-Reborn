@@ -1,12 +1,12 @@
-package net.torocraft.flighthud.common.components;
+package com.plr.flighthud.common.components;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.plr.flighthud.api.HudComponent;
+import com.plr.flighthud.common.Dimensions;
+import com.plr.flighthud.common.FlightComputer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.torocraft.flighthud.api.HudComponent;
-import net.torocraft.flighthud.common.Dimensions;
-import net.torocraft.flighthud.common.FlightComputer;
 
 public class PitchIndicator extends HudComponent {
     private final Dimensions dim;

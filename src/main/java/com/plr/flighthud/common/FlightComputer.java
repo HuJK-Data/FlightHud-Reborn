@@ -1,5 +1,6 @@
-package net.torocraft.flighthud.common;
+package com.plr.flighthud.common;
 
+import com.plr.flighthud.common.config.SettingsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -9,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.torocraft.flighthud.common.config.SettingsConfig;
 
 public class FlightComputer {
     private static final float TICKS_PER_SECOND = 20;

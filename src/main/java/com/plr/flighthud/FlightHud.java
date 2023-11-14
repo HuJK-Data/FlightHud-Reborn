@@ -1,7 +1,10 @@
-package net.torocraft.flighthud;
+package com.plr.flighthud;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
+import com.plr.flighthud.common.config.HudConfig;
+import com.plr.flighthud.common.config.SettingsConfig;
+import com.plr.flighthud.compat.ebb.ElytraBombingCompat;
 import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
@@ -11,9 +14,6 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.KeyMapping;
 import net.minecraftforge.fml.config.ModConfig;
-import net.torocraft.flighthud.common.config.HudConfig;
-import net.torocraft.flighthud.common.config.SettingsConfig;
-import net.torocraft.flighthud.compat.ebb.ElytraBombingCompat;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 

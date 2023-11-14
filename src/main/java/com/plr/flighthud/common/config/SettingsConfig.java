@@ -1,4 +1,4 @@
-package net.torocraft.flighthud.common.config;
+package com.plr.flighthud.common.config;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;

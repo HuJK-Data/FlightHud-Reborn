@@ -1,8 +1,8 @@
-package net.torocraft.flighthud.common;
+package com.plr.flighthud.common;
 
+import com.plr.flighthud.api.HudComponent;
+import com.plr.flighthud.common.config.HudConfig;
 import net.minecraft.client.Minecraft;
-import net.torocraft.flighthud.api.HudComponent;
-import net.torocraft.flighthud.common.config.HudConfig;
 
 public class Dimensions {
     public float hScreen;

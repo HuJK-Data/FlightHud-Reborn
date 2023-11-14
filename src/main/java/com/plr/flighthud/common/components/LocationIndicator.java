@@ -1,9 +1,9 @@
-package net.torocraft.flighthud.common.components;
+package com.plr.flighthud.common.components;
 
+import com.plr.flighthud.api.HudComponent;
+import com.plr.flighthud.common.Dimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.torocraft.flighthud.api.HudComponent;
-import net.torocraft.flighthud.common.Dimensions;
 
 public class LocationIndicator extends HudComponent {
 
