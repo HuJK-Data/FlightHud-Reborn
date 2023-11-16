@@ -16,6 +16,7 @@ public class HudConfig {
     public final ForgeConfigSpec.IntValue color_red;
     public final ForgeConfigSpec.IntValue color_green;
     public final ForgeConfigSpec.IntValue color_blue;
+    public final ForgeConfigSpec.IntValue color_alpha;
 
     public final ForgeConfigSpec.BooleanValue elytra_showHealth;
     public final ForgeConfigSpec.DoubleValue elytra_x;
@@ -62,6 +63,7 @@ public class HudConfig {
         color_red = builder.defineInRange("color_red", 0, 0, 255);
         color_green = builder.defineInRange("color_green", 255, 0, 255);
         color_blue = builder.defineInRange("color_blue", 0, 0, 255);
+        color_alpha = builder.defineInRange("color_alpha", 100, 0, 255);
         builder.pop();
         builder.push("ElytraHealth");
         elytra_showHealth = builder.define("elytra_showHealth", isFull);
@@ -115,7 +117,7 @@ public class HudConfig {
     }
 
     public int getColorRGB() {
-        return new Color(color_red.get(), color_green.get(), color_blue.get()).getRGB();
+        return new Color(color_red.get(), color_green.get(), color_blue.get(), color_alpha.get()).getRGB();
     }
 
     public static class Min extends HudConfig {
