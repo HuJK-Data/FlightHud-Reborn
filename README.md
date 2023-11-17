@@ -6,6 +6,12 @@ __Flight HUD: Reborn__ is a client side Minecraft Mod that adds a flight-simulat
 
 ![HUD Demo](images/flighthud_demo.gif?raw=true "HUD Screenshot")
 
+## Available On
+
+### CurseForge
+
+[![CurseForge](https://cf.way2muchnoise.eu/936558.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/flighthud-reborn)
+
 ## Features(Original)
 - pitch ladder
 - artificial horizon
