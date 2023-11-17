@@ -1,8 +1,8 @@
 # Flight HUD: Reborn
 
-__Flight HUD: Reborn__ is a fork and an unofficial port of [Flight HUD](https://github.com/frodare/FlightHud)
+## Introduction
 
-__Flight HUD: Reborn__ is a client side Minecraft Mod that adds a flight-simulator-style HUD for elytra flying.
+__Flight HUD: Reborn__ is a fork and an unofficial port of [Flight HUD](https://github.com/frodare/FlightHud), a client side Minecraft Mod that adds a flight-simulator-style HUD for elytra flying.
 
 ![HUD Demo](images/flighthud_demo.gif?raw=true "HUD Screenshot")
 
