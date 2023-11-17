@@ -2,9 +2,9 @@
 
 __Flight HUD__ is a client side Fabric Minecraft Mod that adds a flight style HUD like one you would see in a flight simulator.
 
-![HUD Screenshot](images/hud2020-07-07.png?raw=true "HUD Screenshot")
+![HUD Demo](images/flighthud_demo.gif?raw=true "HUD Screenshot")
 
-## Features
+## Features(Original)
 - pitch ladder
 - artificial horizon
 - flight path (prograde vector)
@@ -22,10 +22,8 @@ __Flight HUD__ is a client side Fabric Minecraft Mod that adds a flight style HU
 - elytra health percentage
 - location in x/z
 
+## Features(New)
+- elytra bombing TNT count
+- PullUp warning texts
 
 ![HUD Components](images/hud-diagram.png?raw=true "HUD Components")
-
-## Requirements
-- Minecraft 1.16.1
-- Fabric Mod Loader
-- Fabric API Mod
