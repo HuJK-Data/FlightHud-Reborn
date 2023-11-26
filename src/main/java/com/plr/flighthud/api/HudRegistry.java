@@ -1,7 +1,7 @@
 package com.plr.flighthud.api;
 
 import com.google.common.collect.Lists;
-import com.plr.flighthud.common.components.*;
+import com.plr.flighthud.core.components.*;
 
 import java.util.List;
 

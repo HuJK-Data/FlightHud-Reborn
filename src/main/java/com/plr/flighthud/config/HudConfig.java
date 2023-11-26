@@ -1,4 +1,4 @@
-package com.plr.flighthud.common.config;
+package com.plr.flighthud.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

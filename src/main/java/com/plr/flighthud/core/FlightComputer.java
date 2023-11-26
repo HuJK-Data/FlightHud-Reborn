@@ -1,6 +1,6 @@
-package com.plr.flighthud.common;
+package com.plr.flighthud.core;
 
-import com.plr.flighthud.common.config.SettingsConfig;
+import com.plr.flighthud.config.SettingsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;

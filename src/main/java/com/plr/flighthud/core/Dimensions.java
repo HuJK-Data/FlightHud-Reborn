@@ -1,7 +1,7 @@
-package com.plr.flighthud.common;
+package com.plr.flighthud.core;
 
 import com.plr.flighthud.api.HudComponent;
-import com.plr.flighthud.common.config.HudConfig;
+import com.plr.flighthud.config.HudConfig;
 import net.minecraft.client.Minecraft;
 
 public class Dimensions {

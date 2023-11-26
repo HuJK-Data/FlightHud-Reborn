@@ -1,6 +1,6 @@
-package com.plr.flighthud.client.event.handler;
+package com.plr.flighthud.event.handler;
 
-import com.plr.flighthud.client.key.KeyBindings;
+import com.plr.flighthud.key.KeyBindings;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

@@ -1,9 +1,9 @@
 package com.plr.flighthud;
 
 import com.mojang.logging.LogUtils;
-import com.plr.flighthud.common.config.HudConfig;
-import com.plr.flighthud.common.config.SettingsConfig;
 import com.plr.flighthud.compat.ebb.ElytraBombingCompat;
+import com.plr.flighthud.config.HudConfig;
+import com.plr.flighthud.config.SettingsConfig;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

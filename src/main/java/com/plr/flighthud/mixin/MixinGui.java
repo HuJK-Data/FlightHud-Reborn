@@ -1,6 +1,6 @@
 package com.plr.flighthud.mixin;
 
-import com.plr.flighthud.common.HudRenderer;
+import com.plr.flighthud.core.HudRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraftforge.client.gui.overlay.ForgeGui;

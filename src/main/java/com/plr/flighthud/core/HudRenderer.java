@@ -1,11 +1,11 @@
-package com.plr.flighthud.common;
+package com.plr.flighthud.core;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.plr.flighthud.FlightHud;
 import com.plr.flighthud.api.HudComponent;
 import com.plr.flighthud.api.HudRegistry;
-import com.plr.flighthud.common.config.HudConfig;
-import com.plr.flighthud.common.config.SettingsConfig;
+import com.plr.flighthud.config.HudConfig;
+import com.plr.flighthud.config.SettingsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 

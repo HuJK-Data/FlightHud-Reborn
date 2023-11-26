@@ -1,4 +1,4 @@
-package com.plr.flighthud.client.key;
+package com.plr.flighthud.key;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;

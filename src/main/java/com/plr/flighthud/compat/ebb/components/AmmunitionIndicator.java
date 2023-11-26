@@ -2,7 +2,7 @@ package com.plr.flighthud.compat.ebb.components;
 
 import com.google.common.collect.ImmutableList;
 import com.plr.flighthud.api.HudComponent;
-import com.plr.flighthud.common.Dimensions;
+import com.plr.flighthud.core.Dimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.InteractionHand;

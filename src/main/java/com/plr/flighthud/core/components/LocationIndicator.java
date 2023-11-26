@@ -1,7 +1,7 @@
-package com.plr.flighthud.common.components;
+package com.plr.flighthud.core.components;
 
 import com.plr.flighthud.api.HudComponent;
-import com.plr.flighthud.common.Dimensions;
+import com.plr.flighthud.core.Dimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 
