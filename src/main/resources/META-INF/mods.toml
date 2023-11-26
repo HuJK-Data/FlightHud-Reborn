@@ -1,0 +1,14 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL = "https://github.com/MikhailTapio/FlightHud/issues"
+[[mods]]
+logoFile = "assets/flighthud/icon.png"
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+authors = "${mod_authors}"
+displayTest = "IGNORE_SERVER_VERSION"
+description = '''${mod_description}'''
+[[mixins]]
+config = "${mod_id}.mixins.json"
