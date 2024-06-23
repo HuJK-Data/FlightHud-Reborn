@@ -30,8 +30,8 @@ public class HudConfig {
     public final ForgeConfigSpec.IntValue pitchLadder_degreesPerBar;
     public final ForgeConfigSpec.BooleanValue pitchLadder_showHorizon;
     public final ForgeConfigSpec.BooleanValue pitchLadder_showLadder;
-    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumGlideAngle;
-    public final ForgeConfigSpec.DoubleValue pitchLadder_optimumClimbAngle;
+    public final ForgeConfigSpec.FloatValue pitchLadder_optimumGlideAngle;
+    public final ForgeConfigSpec.FloatValue pitchLadder_optimumClimbAngle;
     public final ForgeConfigSpec.BooleanValue pitchLadder_showRoll;
     public final ForgeConfigSpec.BooleanValue pitchLadder_reverseRoll;
 
@@ -46,8 +46,8 @@ public class HudConfig {
     public final ForgeConfigSpec.BooleanValue heading_showScale;
     public final ForgeConfigSpec.BooleanValue heading_showReadout;
     public final ForgeConfigSpec.BooleanValue ebb_show_tnt_count;
-    public final ForgeConfigSpec.DoubleValue ebb_tnt_x;
-    public final ForgeConfigSpec.DoubleValue ebb_tnt_y;
+    public final ForgeConfigSpec.FloatValue ebb_tnt_x;
+    public final ForgeConfigSpec.FloatValue ebb_tnt_y;
 
     private HudConfig(boolean isFull) {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
