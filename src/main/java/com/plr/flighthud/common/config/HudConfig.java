@@ -86,7 +86,7 @@ public class HudConfig {
         pitchLadder_optimumClimbAngle = builder.defineInRange("pitchLadder_optimumClimbAngle", isFull ? 55.0f : 0.0f,
                 -360.0f, 360.0f);
         pitchLadder_showRoll = builder.define("pitchLadder_showRoll", true);
-        pitchLadder_rollDisplayMode = builder.defineEnum("pitchLadder_reverseRoll", RollDisplayMode.NORMAL);
+        pitchLadder_rollDisplayMode = builder.defineEnum("pitchLadder_rollDisplayMode", RollDisplayMode.NORMAL);
         builder.pop();
         builder.push("Speed");
         speed_showScale = builder.define("speed_showScale", isFull);
