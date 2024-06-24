@@ -50,6 +50,6 @@ tasks.withType(JavaCompile).configureEach {
 // if it is present.
 // If you remove this task, sources will not be generated.
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(21)
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
     withSourcesJar()
 }

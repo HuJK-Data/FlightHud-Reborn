@@ -1,7 +1,6 @@
 package com.plr.flighthud.mixin;
 
 import com.plr.flighthud.common.HudRenderer;
-import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -23,8 +22,8 @@ public abstract class MixinGui {
     private HudRenderer hud;
 
     @Inject(method = "render", at = @At("RETURN"))
-    private void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-        getHud().render(guiGraphics, deltaTracker.getRealtimeDeltaTicks(), minecraft);
+    private void render(GuiGraphics guiGraphics, float f, CallbackInfo ci) {
+        getHud().render(guiGraphics, f, minecraft);
     }
 
     @Unique
