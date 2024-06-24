@@ -8,6 +8,9 @@
     "ToroCraft",
     "Tapio"
   ],
+  "contributors": [
+    "unIlptr"
+  ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/flighthud-reborn",
     "issues": "https://github.com/MikhailTapio/FlightHud/issues",
