@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.4.1'
+    id 'fabric-loom' version '1.7.1'
     id 'maven-publish'
 }
 
@@ -25,8 +25,8 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "curse.maven:forge-config-api-port-fabric-547434:${project.fcapi_file_id}"
-    compileOnly('com.electronwill.night-config:core:3.6.5')
-    compileOnly('com.electronwill.night-config:toml:3.6.5')
+    compileOnly('com.electronwill.night-config:core:3.7.3')
+    compileOnly('com.electronwill.night-config:toml:3.7.3')
 }
 
 processResources {
@@ -50,6 +50,6 @@ tasks.withType(JavaCompile).configureEach {
 // if it is present.
 // If you remove this task, sources will not be generated.
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
     withSourcesJar()
 }

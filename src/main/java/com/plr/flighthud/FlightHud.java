@@ -5,7 +5,7 @@ import com.mojang.logging.LogUtils;
 import com.plr.flighthud.common.config.HudConfig;
 import com.plr.flighthud.common.config.SettingsConfig;
 import com.plr.flighthud.compat.ebb.ElytraBombingCompat;
-import fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.forge.v4.ForgeConfigRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
