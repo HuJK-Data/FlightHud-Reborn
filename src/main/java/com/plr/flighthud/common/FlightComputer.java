@@ -86,7 +86,7 @@ public class FlightComputer {
             dot = Mth.clamp(dot, -1, 1);
             double direction = Math.signum(velocity.x * facing.z - velocity.z * facing.x);
             rollAngle = (float) (Math.atan(Math.sqrt(horizontalSpeed2) * Math.acos(dot) * wingPower) * direction
-                    * 57.29577951308);
+                    * 57.29577951308) / 2.0F;
         }
 
         rollAngle = (float) ((1.0 - rollSmoothing) * rollAngle + rollSmoothing * previousRollAngle);
