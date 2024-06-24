@@ -149,14 +149,13 @@ public abstract class HudComponent {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-        bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        BufferBuilder bufferBuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
         final Matrix4f matrix = ctx.pose().last().pose();
-        bufferBuilder.vertex(matrix, x1, y2, 0.0F).color(r, g, b, alpha).endVertex();
-        bufferBuilder.vertex(matrix, x2, y2, 0.0F).color(r, g, b, alpha).endVertex();
-        bufferBuilder.vertex(matrix, x2, y1, 0.0F).color(r, g, b, alpha).endVertex();
-        bufferBuilder.vertex(matrix, x1, y1, 0.0F).color(r, g, b, alpha).endVertex();
-        BufferUploader.drawWithShader(bufferBuilder.end());
+        bufferBuilder.addVertex(matrix, x1, y2, 0.0F).setColor(r, g, b, alpha);
+        bufferBuilder.addVertex(matrix, x2, y2, 0.0F).setColor(r, g, b, alpha);
+        bufferBuilder.addVertex(matrix, x2, y1, 0.0F).setColor(r, g, b, alpha);
+        bufferBuilder.addVertex(matrix, x1, y1, 0.0F).setColor(r, g, b, alpha);
+        BufferUploader.drawWithShader(bufferBuilder.buildOrThrow());
         RenderSystem.disableBlend();
     }
 

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.plr.flighthud.FlightHud;
 import com.plr.flighthud.api.HudComponent;
 import com.plr.flighthud.api.HudRegistry;
+import com.plr.flighthud.api.IFlies;
 import com.plr.flighthud.common.config.HudConfig;
 import com.plr.flighthud.common.config.SettingsConfig;
 import net.minecraft.client.Minecraft;
@@ -23,7 +24,7 @@ public class HudRenderer extends HudComponent {
 
     private void setupConfig(Minecraft client) {
         if (client.player == null) return;
-        HudComponent.CONFIG = switch (client.player.isFallFlying() ?
+        HudComponent.CONFIG = switch (((IFlies) client.player).flighthud$isActuallyFlying() ?
                 SettingsConfig.displayModeWhenFlying.get() :
                 SettingsConfig.displayModeWhenNotFlying.get()) {
             case NONE -> null;

@@ -3,7 +3,8 @@
   "package": "com.plr.flighthud.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "MixinGui"
+    "MixinGui",
+    "MixinLocalPlayer"
   ],
   "injectors": {
     "defaultRequire": 1

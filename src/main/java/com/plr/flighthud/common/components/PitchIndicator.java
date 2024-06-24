@@ -28,7 +28,7 @@ public class PitchIndicator extends HudComponent {
         float a = dim.yMid;
         float b = dim.xMid;
 
-        double roll = computer.roll * (CONFIG.pitchLadder_reverseRoll.get() ? -1 : 1);
+        double roll = CONFIG.pitchLadder_rollDisplayMode.get().processRoll(computer.roll);
 
         final PoseStack m = ctx.pose();
 

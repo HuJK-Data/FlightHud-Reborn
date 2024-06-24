@@ -12,6 +12,7 @@ public class SettingsConfig {
     public static final ForgeConfigSpec.DoubleValue rollTurningForce;
     public static final ForgeConfigSpec.DoubleValue rollSmoothing;
     public static final ForgeConfigSpec.IntValue hudRefreshInterval;
+    public static final ForgeConfigSpec.LongValue hudInitializationDelay;
 
     static {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -22,6 +23,7 @@ public class SettingsConfig {
         rollTurningForce = builder.defineInRange("rollTurningForce", 1.25, 0.0, Double.MAX_VALUE);
         rollSmoothing = builder.defineInRange("rollSmoothing", 0.85, 0.0, Double.MAX_VALUE);
         hudRefreshInterval = builder.defineInRange("hudRefreshInterval", 5, 1, 40);
+        hudInitializationDelay = builder.defineInRange("hudInitializationDelay", 1000L, 0L, 5000L);
         builder.pop();
         CFG = builder.build();
     }

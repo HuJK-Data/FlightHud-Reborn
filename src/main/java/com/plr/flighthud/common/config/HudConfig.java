@@ -33,7 +33,7 @@ public class HudConfig {
     public final ForgeConfigSpec.FloatValue pitchLadder_optimumGlideAngle;
     public final ForgeConfigSpec.FloatValue pitchLadder_optimumClimbAngle;
     public final ForgeConfigSpec.BooleanValue pitchLadder_showRoll;
-    public final ForgeConfigSpec.BooleanValue pitchLadder_reverseRoll;
+    public final ForgeConfigSpec.EnumValue<RollDisplayMode> pitchLadder_rollDisplayMode;
 
     public final ForgeConfigSpec.BooleanValue speed_showScale;
     public final ForgeConfigSpec.BooleanValue speed_showReadout;
@@ -86,7 +86,7 @@ public class HudConfig {
         pitchLadder_optimumClimbAngle = builder.defineInRange("pitchLadder_optimumClimbAngle", isFull ? 55.0f : 0.0f,
                 -360.0f, 360.0f);
         pitchLadder_showRoll = builder.define("pitchLadder_showRoll", true);
-        pitchLadder_reverseRoll = builder.define("pitchLadder_reverseRoll", false);
+        pitchLadder_rollDisplayMode = builder.defineEnum("pitchLadder_reverseRoll", RollDisplayMode.NORMAL);
         builder.pop();
         builder.push("Speed");
         speed_showScale = builder.define("speed_showScale", isFull);
@@ -117,6 +117,29 @@ public class HudConfig {
 
     public int getColorRGB() {
         return new Color(color_red.get(), color_green.get(), color_blue.get(), color_alpha.get()).getRGB();
+    }
+
+    public enum RollDisplayMode {
+        NORMAL() {
+            @Override
+            public double processRoll(double roll0) {
+                return roll0 * -1.0;
+            }
+        },
+        FIXED {
+            @Override
+            public double processRoll(double roll0) {
+                return 0;
+            }
+        },
+        REVERSED {
+            @Override
+            public double processRoll(double roll0) {
+                return roll0;
+            }
+        };
+
+        public abstract double processRoll(double roll0);
     }
 
     public static class Min extends HudConfig {

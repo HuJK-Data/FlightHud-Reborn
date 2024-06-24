@@ -1,6 +1,7 @@
 package com.plr.flighthud.mixin;
 
 import com.plr.flighthud.common.HudRenderer;
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
@@ -13,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Gui.class)
-public class MixinGui {
+public abstract class MixinGui {
 
     @Shadow
     @Final
@@ -22,8 +23,8 @@ public class MixinGui {
     private HudRenderer hud;
 
     @Inject(method = "render", at = @At("RETURN"))
-    private void render(GuiGraphics context, float tickDelta, CallbackInfo ci) {
-        getHud().render(context, tickDelta, minecraft);
+    private void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+        getHud().render(guiGraphics, deltaTracker.getRealtimeDeltaTicks(), minecraft);
     }
 
     @Unique

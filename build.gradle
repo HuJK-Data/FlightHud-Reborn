@@ -25,8 +25,8 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "curse.maven:forge-config-api-port-fabric-547434:${project.fcapi_file_id}"
-    compileOnly('com.electronwill.night-config:core:3.7.3')
-    compileOnly('com.electronwill.night-config:toml:3.7.3')
+    compileOnly("com.electronwill.night-config:core:${project.night_cfg_version}")
+    compileOnly("com.electronwill.night-config:toml:${project.night_cfg_version}")
 }
 
 processResources {
