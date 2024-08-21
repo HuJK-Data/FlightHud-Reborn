@@ -30,6 +30,7 @@ public class HudRenderer extends HudComponent {
             case NONE -> null;
             case MIN -> HudConfig.Min.getInstance();
             case FULL -> HudConfig.Full.getInstance();
+            default -> null;
         };
     }
 
@@ -51,7 +52,6 @@ public class HudRenderer extends HudComponent {
             }
 
             if (updateTick == 0) {
-                computer.update(client, partial);
                 dim.update(client);
             }
             updateTick++;

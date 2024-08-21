@@ -2,6 +2,7 @@ package com.plr.flighthud;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.logging.LogUtils;
+import com.plr.flighthud.common.FlightComputer;
 import com.plr.flighthud.common.config.HudConfig;
 import com.plr.flighthud.common.config.SettingsConfig;
 import com.plr.flighthud.compat.ebb.ElytraBombingCompat;
@@ -22,6 +23,8 @@ public class FlightHud implements ClientModInitializer {
     public static final String MODID = "flighthud";
 
     private static KeyMapping keyBinding;
+
+    public static final FlightComputer computer = new FlightComputer();
 
     @Override
     public void onInitializeClient() {
